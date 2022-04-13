@@ -52,7 +52,6 @@ int main()
 
     // Crea una estructura que guardara los datos
     struct Datos datos;
-    printf("El tamaño de datos es %ld", sizeof(datos));
 
     do
     {
@@ -76,7 +75,6 @@ int main()
             idLugar(&origen);
             printf("El id ingresado fue %d\n", origen);
             datos.idOrigen = origen;
-            // escribirTuberia(&descriptor,tuberia,origen);
             break;
 
         case 2:
@@ -86,7 +84,6 @@ int main()
             idLugar(&destino);
             printf("El id ingresado fue %d\n", destino);
             datos.idDestino = destino;
-            // escribirTuberia(&descriptor,tuberia,destino);
             break;
 
         case 3:
@@ -95,11 +92,10 @@ int main()
             formatoHora(&hora);
             printf("\nLa hora ingrasado fue %d\n", hora);
             datos.hora = hora;
-            // escribirTuberia(&descriptor,tuberia,hora);
             break;
 
         case 4:
-            escribirTuberia(&descriptor, tuberia,datos);
+            escribirTuberia(&descriptor, tuberia, datos);
             break;
         case 5:
             printf("Adios\n");

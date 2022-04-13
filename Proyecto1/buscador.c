@@ -14,11 +14,11 @@ int main()
     // Ruta del archivo tuberia
     char *tuberia = "./menuBuscador";
 
-    
     // Se abre la tuberia
-    do{
+    do
+    {
         descriptor = open(tuberia, O_RDONLY);
-    }while (descriptor == -1);
+    } while (descriptor == -1);
 
     if (descriptor < 0)
     {
@@ -35,12 +35,12 @@ int main()
         perror("Hubo un error leyendo el archivo de la tuberia");
         exit(-1);
     }
-    printf("El mensaje recibido fue %d %d %d\n", buffer.idOrigen,buffer.idDestino,buffer.hora);
+    printf("El mensaje recibido fue %d %d %d\n", buffer.idOrigen, buffer.idDestino, buffer.hora);
     close(descriptor);
 
     printf("Ingrese cualquier letra para continuar");
     char a;
-    scanf("%s",&a);
+    scanf("%s", &a);
 
     return 0;
 }
