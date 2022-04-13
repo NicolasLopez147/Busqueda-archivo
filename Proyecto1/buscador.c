@@ -4,16 +4,22 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "datos.h"
+#include <sys/wait.h>
 
 int main()
 {
+
     // Descriptor del archivo
     int descriptor;
     // Ruta del archivo tuberia
     char *tuberia = "./menuBuscador";
 
+    
     // Se abre la tuberia
-    descriptor = open(tuberia, O_RDONLY);
+    do{
+        descriptor = open(tuberia, O_RDONLY);
+    }while (descriptor == -1);
+
     if (descriptor < 0)
     {
         perror("Hubo un error abriendo el archivo de la tuberia");
@@ -31,6 +37,10 @@ int main()
     }
     printf("El mensaje recibido fue %d %d %d\n", buffer.idOrigen,buffer.idDestino,buffer.hora);
     close(descriptor);
+
+    printf("Ingrese cualquier letra para continuar");
+    char a;
+    scanf("%s",&a);
 
     return 0;
 }
