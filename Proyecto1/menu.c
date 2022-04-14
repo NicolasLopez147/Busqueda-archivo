@@ -40,18 +40,45 @@ void escribirTuberia(int *descriptor, char *tuberia, struct Datos buffer)
     close(*descriptor);
 }
 
+void leerTuberia(int descriptor, char *tuberia, struct datosCompletos *buffer, int tamano)
+{
+    // Se abre la tuberia
+    do
+    {
+        // Espera a que se cree el archivo tipo FIFO memuBuscador
+        descriptor = open(tuberia, O_RDONLY);
+    } while (descriptor == -1);
+
+    if (descriptor < 0)
+    {
+        perror("Hubo un error abriendo el archivo de la tuberia");
+        exit(-1);
+    }
+    // Lee el archivo FIFO y guarla la informacion en buffer
+    int r = read(descriptor, buffer, tamano);
+    if (r < 0)
+    {
+        perror("Hubo un error leyendo el archivo de la tuberia");
+        exit(-1);
+    }
+    close(descriptor);
+}
+
 int main()
 {
     int opc = 0;
     // Descriptor del archivo
     int descriptor;
+    int descriptor2;
     // Ruta del archivo FIFO (tuberia)
     char *tuberia = "./menuBuscador";
+    char *tuberia2 = "./buscadorMenu";
     // Crear archivo de tipo FIFO con sus permisos en octal
     mkfifo(tuberia, 0666);
 
     // Crea una estructura que guardara los datos
     struct Datos datos;
+    struct datosCompletos *buffer;
 
     do
     {
@@ -96,6 +123,8 @@ int main()
 
         case 4:
             escribirTuberia(&descriptor, tuberia, datos);
+            //leerTuberia(descriptor2,tuberia2,buffer,12);
+            //printf("El mensaje recibido fue %d %d %d\n", buffer->suma, buffer->resta, buffer->multiplicacion);
             break;
         case 5:
             printf("Adios\n");
