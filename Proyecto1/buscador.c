@@ -6,12 +6,14 @@
 #include "datos.h"
 #include <sys/wait.h>
 
-void leerTuberia(int descriptor,char * tuberia, struct Datos *buffer, int tamano)
+void leerTuberia(char *tuberia, struct Datos *buffer, int tamano)
 {
+    // Descriptor del archivo
+    int descriptor;
     // Se abre la tuberia
     do
     {
-        //Espera a que se cree el archivo tipo FIFO memuBuscador
+        // Espera a que se cree el archivo tipo FIFO memuBuscador
         descriptor = open(tuberia, O_RDONLY);
     } while (descriptor == -1);
 
@@ -20,7 +22,7 @@ void leerTuberia(int descriptor,char * tuberia, struct Datos *buffer, int tamano
         perror("Hubo un error abriendo el archivo de la tuberia");
         exit(-1);
     }
-    //Lee el archivo FIFO y guarla la informacion en buffer
+    // Lee el archivo FIFO y guarla la informacion en buffer
     int r = read(descriptor, buffer, tamano);
     if (r < 0)
     {
@@ -29,30 +31,26 @@ void leerTuberia(int descriptor,char * tuberia, struct Datos *buffer, int tamano
     }
     close(descriptor);
 }
-
-void escribirTuberia(int *descriptor, char *tuberia, struct Datos buffer)
+void escribirTuberia(char *tuberia, struct Datos buffer , int tamano)
 {
-
-    *descriptor = open(tuberia, O_WRONLY);
-    if (*descriptor < 0)
+    // Descriptor del archivo
+    int descriptor = open(tuberia, O_WRONLY);
+    if (descriptor < 0)
     {
         perror("Hubo un error abriendo el archivo de la tuberia");
         exit(-1);
     }
-    int r = write(*descriptor, &buffer, sizeof(buffer));
+    int r = write(descriptor, &buffer, tamano);
     if (r < 0)
     {
         perror("No se pudo escribir el origen en la tuberia");
     }
-    close(*descriptor);
+    close(descriptor);
 }
-
 
 int main()
 {
 
-    // Descriptor del archivo
-    int descriptor;
     // Ruta del archivo tuberia
     char *tuberia = "./menuBuscador";
     char *tuberia2 = "./buscadorMenu";
@@ -60,14 +58,19 @@ int main()
     // Se lee el mensaje de la tuberia
     struct Datos *buffer;
 
-    leerTuberia(descriptor, tuberia, buffer, 12);
+    leerTuberia(tuberia, buffer, sizeof(*buffer));
     printf("El mensaje recibido fue %d %d %d\n", buffer->idOrigen, buffer->idDestino, buffer->hora);
-    
 
     printf("Ingrese cualquier letra para continuar");
     char a;
     scanf("%s", &a);
 
+    buffer->idOrigen = 5;
+    buffer->idDestino = 6;
+    buffer->hora = 7;
+
+    mkfifo(tuberia2, 0666);
+    escribirTuberia(tuberia2,*buffer, sizeof(*buffer));
 
 
     return 0;

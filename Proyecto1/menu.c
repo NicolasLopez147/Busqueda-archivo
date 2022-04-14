@@ -23,25 +23,27 @@ int formatoHora(int *a)
     }
 }
 
-void escribirTuberia(int *descriptor, char *tuberia, struct Datos buffer)
+void escribirTuberia(char *tuberia, struct Datos buffer, int tamano)
 {
-
-    *descriptor = open(tuberia, O_WRONLY);
-    if (*descriptor < 0)
+    // Descriptor del archivo
+    int descriptor = open(tuberia, O_WRONLY);
+    if (descriptor < 0)
     {
         perror("Hubo un error abriendo el archivo de la tuberia");
         exit(-1);
     }
-    int r = write(*descriptor, &buffer, sizeof(buffer));
+    int r = write(descriptor, &buffer, sizeof(buffer));
     if (r < 0)
     {
         perror("No se pudo escribir el origen en la tuberia");
     }
-    close(*descriptor);
+    close(descriptor);
 }
 
-void leerTuberia(int descriptor, char *tuberia, struct datosCompletos *buffer, int tamano)
+void leerTuberia(char *tuberia, struct Datos *buffer, int tamano)
 {
+    // Descriptor del archivo
+    int descriptor;
     // Se abre la tuberia
     do
     {
@@ -67,9 +69,6 @@ void leerTuberia(int descriptor, char *tuberia, struct datosCompletos *buffer, i
 int main()
 {
     int opc = 0;
-    // Descriptor del archivo
-    int descriptor;
-    int descriptor2;
     // Ruta del archivo FIFO (tuberia)
     char *tuberia = "./menuBuscador";
     char *tuberia2 = "./buscadorMenu";
@@ -77,8 +76,7 @@ int main()
     mkfifo(tuberia, 0666);
 
     // Crea una estructura que guardara los datos
-    struct Datos datos;
-    struct datosCompletos *buffer;
+    struct Datos *datos;
 
     do
     {
@@ -101,7 +99,7 @@ int main()
             scanf("%d", &origen);
             idLugar(&origen);
             printf("El id ingresado fue %d\n", origen);
-            datos.idOrigen = origen;
+            datos->idOrigen = origen;
             break;
 
         case 2:
@@ -110,7 +108,7 @@ int main()
             scanf("%d", &destino);
             idLugar(&destino);
             printf("El id ingresado fue %d\n", destino);
-            datos.idDestino = destino;
+            datos->idDestino = destino;
             break;
 
         case 3:
@@ -118,18 +116,19 @@ int main()
             scanf("%d", &hora);
             formatoHora(&hora);
             printf("\nLa hora ingrasado fue %d\n", hora);
-            datos.hora = hora;
+            datos->hora = hora;
             break;
 
         case 4:
-            escribirTuberia(&descriptor, tuberia, datos);
-            //leerTuberia(descriptor2,tuberia2,buffer,12);
-            //printf("El mensaje recibido fue %d %d %d\n", buffer->suma, buffer->resta, buffer->multiplicacion);
+            escribirTuberia(tuberia, *datos,sizeof(*datos));
+            leerTuberia(tuberia2, datos, sizeof(*datos));
+            printf("El mensaje recibido fue %d %d %d\n", datos->idOrigen, datos->idDestino, datos->hora);
             break;
         case 5:
             printf("Adios\n");
             // ELimina el archivo FIFO
             unlink(tuberia);
+            unlink(tuberia2);
             break;
 
         default:

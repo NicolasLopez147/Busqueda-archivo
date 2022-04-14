@@ -5,9 +5,9 @@ struct Datos
     int hora;
 };
 
-struct datosCompletos
-{
-    int suma;
-    int resta;
-    int multiplicacion;
-};
+// struct datosCompletos
+// {
+//     int suma;
+//     int resta;
+//     int multiplicacion;
+// };
