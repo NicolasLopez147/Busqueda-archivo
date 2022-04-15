@@ -50,19 +50,33 @@ void escribirTuberia(char *tuberia, struct Datos buffer , int tamano)
 
 int main()
 {
-
+    
     // Ruta del archivo tuberia
     char *tuberia = "./menuBuscador";
     char *tuberia2 = "./buscadorMenu";
+    char a;
 
     // Se lee el mensaje de la tuberia
     struct Datos *buffer;
 
+    FILE* lectura = malloc(sizeof(FILE));
+    struct index *indice = malloc(2*sizeof(int));
+
     leerTuberia(tuberia, buffer, sizeof(*buffer));
     printf("El mensaje recibido fue %d %d %d\n", buffer->idOrigen, buffer->idDestino, buffer->hora);
 
+
+    lectura = fopen("prueba.txt","rb");    
+    if (!lectura){
+        perror("Hubo un error leyendo el archivo");
+        exit(-1);
+    }
+    
+    fseek(lectura,(buffer->idOrigen-1)*(sizeof(*indice)),SEEK_SET);
+    fread(indice,sizeof(indice),1,lectura);
+    printf("El valor de origen es %d y apunta dentro del archivo a %d\n",indice->idOrigen,indice->apuntador);
+    
     printf("Ingrese cualquier letra para continuar");
-    char a;
     scanf("%s", &a);
 
     buffer->idOrigen = 5;

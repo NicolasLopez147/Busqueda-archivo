@@ -18,3 +18,18 @@ crearTerminal: compilarBuscador
 
 ejecutarBuscador: compilarBuscador buscador
 	./buscador
+
+# compilarTabla: tablaHash.c
+# 	gcc tablaHash.c -o tablaHash
+
+# ejecuta: compilarTabla
+# 	./tablaHash
+
+compilarTabla: escribir.c
+	gcc escribir.c -o escribir
+
+ejecuta: compilarTabla
+	./escribir
+
+clean: escribir menu buscador
+	rm -r escribir menu buscador
