@@ -79,7 +79,6 @@ int main()
     fclose(lectura);
     
     printf("Ingrese cualquier letra para continuar");
-    printf("Hola mundo");
     scanf("%s", &a);
 
     buffer->idOrigen = 5;
