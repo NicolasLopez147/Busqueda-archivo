@@ -75,6 +75,13 @@ int main()
     fseek(lectura,(buffer->idOrigen-1)*(sizeof(*indice)),SEEK_SET);
     fread(indice,sizeof(indice),1,lectura);
     printf("El valor de origen es %d y apunta dentro del archivo a %d\n",indice->idOrigen,indice->apuntador);
+    fclose(lectura);
+
+    lectura = fopen("pruebaTablaHash.txt","rb");
+    fseek(lectura,(indice->apuntador-1)*(sizeof(*buffer)),SEEK_SET);
+    fread(buffer,sizeof(buffer),1,lectura);
+    printf("El mensaje recibido fue %d %d %d\n", buffer->idOrigen, buffer->idDestino, buffer->hora);
+    fclose(lectura);
     
     printf("Ingrese cualquier letra para continuar");
     scanf("%s", &a);

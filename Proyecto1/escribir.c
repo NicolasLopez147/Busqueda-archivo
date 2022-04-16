@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct index
-{
-    int idOrigen;
-    int apuntador;
-};
+#include "datos.h"
 
 int main(){
     FILE *archivo;
@@ -34,4 +30,20 @@ int main(){
     fseek(lectura,(dato-1)*(sizeof(indice)),SEEK_SET);
     fread(&indice,sizeof(indice),1,lectura);
     printf("El valor de origen es %d y apunta dentro del archivo a %d\n",indice.idOrigen,indice.apuntador);
+    fclose(lectura);
+
+    FILE *escribir;
+    escribir = fopen("pruebaTablaHash.txt","wb+");
+    if (!escribir){
+        perror("Hubo un error abriendo el archivo");
+        exit(-1);
+    }
+    //struct Datos datos[1060];
+
+    for (int i = 1 ; i <= 100000;i++){
+        struct Datos dato;
+        fwrite(&dato,1,sizeof(dato),escribir);
+    }
+
+    fclose(archivo);
 }
