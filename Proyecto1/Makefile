@@ -19,17 +19,21 @@ crearTerminal: compilarBuscador
 ejecutarBuscador: compilarBuscador buscador
 	./buscador
 
-# compilarTabla: tablaHash.c
-# 	gcc tablaHash.c -o tablaHash
+#Ejecutar una vez para indexar el archivo
+compilarIndexador: indexador.c
+	gcc indexador.c -o indexador
+
+indexarArchivo: compilarIndexador
+	./indexador
+
+# compilarTabla: escribir.c
+# 	gcc escribir.c -o escribir
 
 # ejecuta: compilarTabla
-# 	./tablaHash
+# 	./escribir
 
-compilarTabla: escribir.c
-	gcc escribir.c -o escribir
+clean: indexador menu buscador
+	rm -r indexador menu buscador
 
-ejecuta: compilarTabla
-	./escribir
-
-clean: escribir menu buscador
-	rm -r escribir menu buscador
+cleanIndex: salidaHash salidaIndex
+	rm -r salidaHash salidaIndex

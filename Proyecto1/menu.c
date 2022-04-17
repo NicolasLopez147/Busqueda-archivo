@@ -10,7 +10,7 @@ int idLugar(int *a)
 {
     while (*a < 1 || *a > 1160)
     {
-        printf("EL id ingreado no es valido, debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
+        printf("El id ingresado no es valido; debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
         scanf("%d", a);
     }
 }
@@ -18,7 +18,7 @@ int formatoHora(int *a)
 {
     while (*a < 0 || *a > 23)
     {
-        printf("EL hora ingreada no es valido, debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
+        printf("La hora ingresada no es valida; debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
         scanf("%d", a);
     }
 }
@@ -90,40 +90,43 @@ int main()
         int origen;
         int destino;
         int hora;
-        int viajeMedio = 0;
         switch (opc)
         {
         case 1:
-
             printf("Ingrese el ID del origen ");
             scanf("%d", &origen);
-            idLugar(&origen);
-            printf("El id ingresado fue %d\n", origen);
+            idLugar(&origen);       // Revision de valores
+            printf("\nEl id ingresado fue %d\n", origen);
             datos->idOrigen = origen;
             break;
 
         case 2:
-
             printf("Ingrese el ID del destino ");
             scanf("%d", &destino);
-            idLugar(&destino);
-            printf("El id ingresado fue %d\n", destino);
+            idLugar(&destino);      // Revision de valores
+            printf("\nEl id ingresado fue %d\n", destino);
             datos->idDestino = destino;
             break;
 
         case 3:
             printf("Ingrese hora del dia ");
             scanf("%d", &hora);
-            formatoHora(&hora);
-            printf("\nLa hora ingrasado fue %d\n", hora);
+            formatoHora(&hora);     // Revision de valores
+            printf("\nLa hora ingresada fue %d\n", hora);
             datos->hora = hora;
             break;
 
         case 4:
-            escribirTuberia(tuberia, *datos,sizeof(*datos));
+            escribirTuberia(tuberia, *datos, sizeof(*datos));
             leerTuberia(tuberia2, datos, sizeof(*datos));
-            printf("El mensaje recibido fue %d %d %d\n", datos->idOrigen, datos->idDestino, datos->hora);
+            if(datos->idOrigen == -1) {
+                printf("No hay registros con los parametros indicados\n");
+                break;
+            }
+            printf("Se encontro el registro %d %d %d ", datos->idOrigen, datos->idDestino, datos->hora);
+            printf("con un tiempo de viaje medio de %f\n", datos->mediaViaje);
             break;
+
         case 5:
             printf("Adios\n");
             // ELimina el archivo FIFO

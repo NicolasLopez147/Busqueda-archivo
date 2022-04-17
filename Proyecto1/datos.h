@@ -12,5 +12,5 @@ struct Datos
 struct index
 {
     int idOrigen;
-    int apuntador;
+    long apuntador;
 };
