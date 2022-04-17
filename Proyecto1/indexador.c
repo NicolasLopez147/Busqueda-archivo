@@ -127,7 +127,7 @@ int main() {
         printf("Se guardo el registro %ld con idOrigen %d y sig %ld\n", numRegistros-i+1, tmp.idOrigen, tmp.sig);
     }
     
-    //free(enlistador);
+    // free(enlistador);     // crea segfault?
 
     fclose(entrada);
     fclose(salidaIndex);

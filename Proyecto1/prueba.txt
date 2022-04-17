@@ -11,4 +11,3 @@ sourceid,dstid,hod,mean_travel_time,standard_deviation_travel_time,geometric_mea
 477,1013,17,2840.13,305.59,2823.59,1.11
 477,248,2,717.97,267.29,678.89,1.38
 1039,899,20,716.59,211.66,688.6,1.32
-
