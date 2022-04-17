@@ -10,11 +10,7 @@ int idLugar(int *a)
 {
     while (*a < 1 || *a > 1160)
     {
-<<<<<<< HEAD
         printf("El id ingresado no es valido; debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
-=======
-        printf("EL id ingreado no es valido, debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
->>>>>>> c0395cb18bce0fe93d51cfccb601a82fdf75b4d3
         scanf("%d", a);
     }
 }
@@ -22,11 +18,7 @@ int formatoHora(int *a)
 {
     while (*a < 0 || *a > 23)
     {
-<<<<<<< HEAD
         printf("La hora ingresada no es valida; debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
-=======
-        printf("EL hora ingreada no es valido, debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
->>>>>>> c0395cb18bce0fe93d51cfccb601a82fdf75b4d3
         scanf("%d", a);
     }
 }
@@ -128,7 +120,7 @@ int main()
             break;
 
         case 4:
-            system("cls||clear");
+            // system("cls||clear");
             escribirTuberia(tuberia, *datos, sizeof(*datos));
             leerTuberia(tuberia2, datos, sizeof(*datos));
             if(datos->idOrigen == -1) {
@@ -141,7 +133,7 @@ int main()
             break;
 
         case 5:
-            system("cls||clear");
+            // system("cls||clear");
             printf("Adios\n");
             // ELimina el archivo FIFO
             unlink(tuberia);
