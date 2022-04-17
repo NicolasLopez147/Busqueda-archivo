@@ -10,7 +10,11 @@ int idLugar(int *a)
 {
     while (*a < 1 || *a > 1160)
     {
+<<<<<<< HEAD
         printf("El id ingresado no es valido; debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
+=======
+        printf("EL id ingreado no es valido, debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
+>>>>>>> c0395cb18bce0fe93d51cfccb601a82fdf75b4d3
         scanf("%d", a);
     }
 }
@@ -18,7 +22,11 @@ int formatoHora(int *a)
 {
     while (*a < 0 || *a > 23)
     {
+<<<<<<< HEAD
         printf("La hora ingresada no es valida; debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
+=======
+        printf("EL hora ingreada no es valido, debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
+>>>>>>> c0395cb18bce0fe93d51cfccb601a82fdf75b4d3
         scanf("%d", a);
     }
 }
@@ -86,7 +94,6 @@ int main()
         printf("3. Ingresar hora\n");
         printf("4. Buscar tiempo de viaje medio\n");
         printf("5. Salir\n");
-
         scanf("%d", &opc);
         int origen;
         int destino;
