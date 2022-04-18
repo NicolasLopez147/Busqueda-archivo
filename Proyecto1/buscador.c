@@ -4,8 +4,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "datos.h"
-#include <sys/wait.h>
-
+// #include <sys/wait.h>
+    
 void leerTuberia(char *tuberia, struct Datos *buffer, int tamano)
 {
     // Descriptor del archivo
