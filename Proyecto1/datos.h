@@ -8,7 +8,7 @@ struct Datos
     float standard_deviation_travel_time;
     float geometric_mean_travel_time;
     float geometric_standard_deviation_travel_time;
-    long sig;
+    long sig; 
 };
 //Estructura del archivo salidaIndex
 struct index

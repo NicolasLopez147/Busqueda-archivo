@@ -95,7 +95,7 @@ int main()
         case 1:
             printf("Ingrese el ID del origen ");
             scanf("%d", &origen);
-            idLugar(&origen);       // Revision de valores
+            idLugar(&origen); // Revision de valores
             printf("\nEl id ingresado fue %d\n", origen);
             datos->idOrigen = origen;
             break;
@@ -103,7 +103,7 @@ int main()
         case 2:
             printf("Ingrese el ID del destino ");
             scanf("%d", &destino);
-            idLugar(&destino);      // Revision de valores
+            idLugar(&destino); // Revision de valores
             printf("\nEl id ingresado fue %d\n", destino);
             datos->idDestino = destino;
             break;
@@ -111,7 +111,7 @@ int main()
         case 3:
             printf("Ingrese hora del dia ");
             scanf("%d", &hora);
-            formatoHora(&hora);     // Revision de valores
+            formatoHora(&hora); // Revision de valores
             printf("\nLa hora ingresada fue %d\n", hora);
             datos->hora = hora;
             break;
@@ -119,7 +119,8 @@ int main()
         case 4:
             escribirTuberia(tuberia, *datos, sizeof(*datos));
             leerTuberia(tuberia2, datos, sizeof(*datos));
-            if(datos->idOrigen == -1) {
+            if (datos->idOrigen == -1)
+            {
                 // printf("No hay registros con los parametros indicados\n");
                 printf("NA\n");
                 break;
