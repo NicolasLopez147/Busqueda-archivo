@@ -84,10 +84,10 @@ int main()
     fseek(lectura, hashOrigen*sizeof(struct index), SEEK_SET);
     fread(&indice, sizeof(struct index), 1, lectura);
     
-    // if(indice.apuntador == -1) {
+    if(indice.apuntador == -1) {
     //     printf("No hay registros con idOrigen %d\n", origen);
-    //     bufferP->idOrigen = -1;      // Indica que no se encontraron registros
-    // } else {
+        bufferP->idOrigen = -1;      // Indica que no se encontraron registros
+    } //else {
     //     printf("El primer registro con idOrigen %d se encuentra en la posicion %ld del archivo indexado\n", indice.idOrigen, indice.apuntador);
     // }
 

@@ -1,3 +1,4 @@
+//Los datos que tiene cada registro
 struct Datos
 {
     int idOrigen;
@@ -9,6 +10,7 @@ struct Datos
     float geometric_standard_deviation_travel_time;
     long sig;
 };
+//Estructura del archivo salidaIndex
 struct index
 {
     int idOrigen;

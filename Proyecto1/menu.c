@@ -98,7 +98,6 @@ int main()
             idLugar(&origen);       // Revision de valores
             printf("\nEl id ingresado fue %d\n", origen);
             datos->idOrigen = origen;
-            system("cls||clear");
             break;
 
         case 2:
@@ -107,7 +106,6 @@ int main()
             idLugar(&destino);      // Revision de valores
             printf("\nEl id ingresado fue %d\n", destino);
             datos->idDestino = destino;
-            system("cls||clear");
             break;
 
         case 3:
@@ -116,11 +114,9 @@ int main()
             formatoHora(&hora);     // Revision de valores
             printf("\nLa hora ingresada fue %d\n", hora);
             datos->hora = hora;
-            system("cls||clear");
             break;
 
         case 4:
-            // system("cls||clear");
             escribirTuberia(tuberia, *datos, sizeof(*datos));
             leerTuberia(tuberia2, datos, sizeof(*datos));
             if(datos->idOrigen == -1) {
@@ -133,7 +129,6 @@ int main()
             break;
 
         case 5:
-            // system("cls||clear");
             printf("Adios\n");
             // ELimina el archivo FIFO
             unlink(tuberia);

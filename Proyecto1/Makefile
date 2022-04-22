@@ -32,8 +32,10 @@ indexarArchivo: compilarIndexador
 # ejecuta: compilarTabla
 # 	./escribir
 
+#Borra los ejecutables de indexador, menu y buscador
 clean: indexador menu buscador
 	rm -r indexador menu buscador
 
+#Borra los archivos binarios salidaHash y salidaIndex
 cleanIndex: salidaHash salidaIndex
 	rm -r salidaHash salidaIndex
