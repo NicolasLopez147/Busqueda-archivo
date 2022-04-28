@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "datos.h"
 #define numIDs 1160 + 1 // 1 <= idOrigen <= 1160

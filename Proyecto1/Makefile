@@ -1,8 +1,8 @@
 all: ejecutarMenu
 
 #Compila menu
-compilarMenu: menu.c
-	gcc menu.c -o menu
+compilarMenu: p1-odProgram.c
+	gcc p1-odProgram.c -o menu
 
 #Compila buscador
 compilarBuscador: buscador.c
