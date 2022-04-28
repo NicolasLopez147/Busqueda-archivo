@@ -1,69 +1,23 @@
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-// #include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "datos.h"
 
-int idLugar(int *a)
+// Limita los posibles valores que puede tomar los id de origen y de llegada
+int idLugar(int *id)
 {
-    while (*a < 1 || *a > 1160)
+    while (*id < 1 || *id > 1160)
     {
         printf("El id ingresado no es valido; debe ser un valor entre 1 y 1160. Ingrese nuevamente el valor\n");
-        scanf("%d", a);
+        scanf("%d", id);
     }
 }
-int formatoHora(int *a)
+
+// Limita la hora ingresada
+int formatoHora(int *hora)
 {
-    while (*a < 0 || *a > 23)
+    while (*hora < 0 || *hora > 23)
     {
         printf("La hora ingresada no es valida; debe ser un valor entre 0 y 23. Ingrese nuevamente el valor\n");
-        scanf("%d", a);
+        scanf("%d", hora);
     }
-}
-
-void escribirTuberia(char *tuberia, struct Datos buffer, int tamano)
-{
-    // Descriptor del archivo
-    int descriptor = open(tuberia, O_WRONLY);
-    if (descriptor < 0)
-    {
-        perror("Hubo un error abriendo el archivo de la tuberia");
-        exit(-1);
-    }
-    int r = write(descriptor, &buffer, sizeof(buffer));
-    if (r < 0)
-    {
-        perror("No se pudo escribir el origen en la tuberia");
-    }
-    close(descriptor);
-}
-
-void leerTuberia(char *tuberia, struct Datos *buffer, int tamano)
-{
-    // Descriptor del archivo
-    int descriptor;
-    // Se abre la tuberia
-    do
-    {
-        // Espera a que se cree el archivo tipo FIFO memuBuscador
-        descriptor = open(tuberia, O_RDONLY);
-    } while (descriptor == -1);
-
-    if (descriptor < 0)
-    {
-        perror("Hubo un error abriendo el archivo de la tuberia");
-        exit(-1);
-    }
-    // Lee el archivo FIFO y guarla la informacion en buffer
-    int r = read(descriptor, buffer, tamano);
-    if (r < 0)
-    {
-        perror("Hubo un error leyendo el archivo de la tuberia");
-        exit(-1);
-    }
-    close(descriptor);
 }
 
 int main()
