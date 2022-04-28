@@ -1,4 +1,4 @@
-Integrantes: fatoresra-nilopezn
+Integrantes: fatorresra-nilopezn
 
 Archivo .zip con los binarios: https://drive.google.com/file/d/19rgLXa6q2KhFKJRKiv5AnmoDyGo3jkvM/view?usp=sharing
 - Descomprimir en la carpeta Proyecto1 antes de ejecutar
